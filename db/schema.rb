@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408172649) do
+ActiveRecord::Schema.define(version: 20150408230532) do
 
   create_table "diagrams", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,26 @@ ActiveRecord::Schema.define(version: 20150408172649) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "nodes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "diagram_id"
+    t.text     "description"
+    t.boolean  "start"
+    t.boolean  "end"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "paths", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "diagram_id"
+    t.integer  "node_id"
+    t.text     "description"
+    t.integer  "next_node_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|

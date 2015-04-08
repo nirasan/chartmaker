@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  diagram_id: 1
+  node_id: 1
+  description: MyText
+  next_node_id: 1
+
+two:
+  user_id: 1
+  diagram_id: 1
+  node_id: 1
+  description: MyText
+  next_node_id: 1
