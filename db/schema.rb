@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408004200) do
+ActiveRecord::Schema.define(version: 20150408172649) do
 
   create_table "diagrams", force: :cascade do |t|
-    t.text     "title"
+    t.integer  "user_id"
+    t.string   "title"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
