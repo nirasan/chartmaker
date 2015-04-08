@@ -3,6 +3,9 @@ require 'test_helper'
 class DiagramsControllerTest < ActionController::TestCase
   setup do
     @diagram = diagrams(:one)
+    @user1 = users(:user1)
+    @user2 = users(:user2)
+    sign_in :user, @user1
   end
 
   test "should get index" do
@@ -27,6 +30,13 @@ class DiagramsControllerTest < ActionController::TestCase
   test "should show diagram" do
     get :show, id: @diagram
     assert_response :success
+  end
+
+  test "should not show diagram" do
+    sign_in :user, @user2
+    get :show, id: @diagram
+    assert_response :forbidden
+    sign_in :user, @user1
   end
 
   test "should get edit" do
