@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root :to => 'top#index'
+  get 'top/index'
+
   get 'diagram/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
