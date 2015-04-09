@@ -1,0 +1,9 @@
+%div.line_element{:id => "line_element_#{line.id}"}
+  %div{:id => "line_element_error_#{line.id}"}
+  \└
+  = form_for line, url: line_path(line), method: "patch", remote: true do |f|
+    = f.text_field :description, :placeholder => "description"
+    = f.text_field :next_node_id, :placeholder => "next_node_id"
+    = f.submit('Update')
+  = form_for line, url: line_path(line), method: "delete", remote: true do |f|
+    = f.submit('Delete', data:{confirm: 'Are you sure?'})

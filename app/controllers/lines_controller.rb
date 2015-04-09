@@ -32,12 +32,14 @@ class LinesController < ApplicationController
     @line.node = @node
 
     respond_to do |format|
-      if @line.save
+      if @result = @line.save
         format.html { redirect_to @line, notice: 'Line was successfully created.' }
         format.json { render :show, status: :created, location: @line }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @line.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -46,12 +48,14 @@ class LinesController < ApplicationController
   # PATCH/PUT /lines/1.json
   def update
     respond_to do |format|
-      if @line.update(line_params)
+      if @result = @line.update(line_params)
         format.html { redirect_to @line, notice: 'Line was successfully updated.' }
         format.json { render :show, status: :ok, location: @line }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @line.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -63,6 +67,7 @@ class LinesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to node_lines_url(@node), notice: 'Line was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

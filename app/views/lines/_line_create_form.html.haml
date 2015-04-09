@@ -1,0 +1,8 @@
+%div{:id => "line_create_error_#{node.id}"}
+%div{:class => "line_element"}
+  \└
+  - line = Line.new
+  = form_for line, url: node_lines_path(node), method: "post", remote: true, html: {:class => "line_create_form"} do |f|
+    = f.text_field :description, :placeholder => "description"
+    = f.text_field :next_node_id, :placeholder => "next_node_id"
+    = f.submit('Create Line')

@@ -1,0 +1,8 @@
+- if @result
+  :plain
+    alert("Success!");
+- else
+  :plain
+    var elm = $("div#line_element_error_#{@node.id}");
+    elm.empty();
+    elm.append("#{escape_javascript( render partial: 'lines/error', locals: {:line => @line} )}");

@@ -1,0 +1,10 @@
+- if @result
+  :plain
+    var elm = $("div#line_create_error_#{@node.id}");
+    elm.before("#{escape_javascript( render partial: 'lines/line_element', locals: {:line => @line} )}");
+    $('.line_create_form > input[type="text"]').val('');
+- else
+  :plain
+    var elm = $("div#line_create_error_#{@node.id}");
+    elm.empty();
+    elm.append("#{escape_javascript( render partial: 'lines/error', locals: {:line => @line} )}");

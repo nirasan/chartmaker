@@ -1,9 +1,13 @@
 - if @result
   :plain
-    var elm = $("div#create_error");
-    elm.before("#{escape_javascript( render partial: 'nodes/node_element', locals: {:node => @node} )}");
+    var elm = $("div#node_create_error");
+    elm.before('<div class="node_#{@node.id}"></div>');
+    var parent = $("div.node_#{@node.id}");
+    parent.append("#{escape_javascript( render partial: 'nodes/node_element', locals: {:node => @node} )}");
+    parent.append("#{escape_javascript( render partial: 'lines/line_create_form', locals: {:node => @node} )}");
+    $('.node_create_form > input[type="text"]').val('');
 - else
   :plain
-    var elm = $("div#create_error");
+    var elm = $("div#node_create_error");
     elm.empty();
     elm.append("#{escape_javascript( render partial: 'nodes/error', locals: {:node => @node} )}");

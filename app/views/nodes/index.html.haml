@@ -7,13 +7,22 @@
 
 %h2 Nodes
 %div#node_container
+  / node list
   - @nodes.each do |node|
-    = render partial: "nodes/node_element", locals: {:node => node}
-  %div#create_error
-  - node = Node.new
-  = form_for node, url: diagram_nodes_path(@diagram), method: "post", remote: true do |f|
-    = f.text_field :description
-    = f.submit('Create')
+    %div{:class => "node_#{node.id}"}
+      = render partial: "nodes/node_element", locals: {:node => node}
+      / line list
+      - node.lines.each do |line|
+        = render partial: "lines/line_element", locals: {:line => line}
+      / line create
+      = render partial: "lines/line_create_form", locals: {:node => node}
+  /node create
+  %div#node_create_error
+  %div.node_element
+    - node = Node.new
+    = form_for node, url: diagram_nodes_path(@diagram), method: "post", remote: true, html: {:class => "node_create_form"} do |f|
+      = f.text_field :description, :placeholder => "description"
+      = f.submit('Create Node')
 
 %br
 
