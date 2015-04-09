@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @line.user_id
+%p
+  %b Diagram:
+  = @line.diagram_id
+%p
+  %b Node:
+  = @line.node_id
+%p
+  %b Next node:
+  = @line.next_node_id
+%p
+  %b Description:
+  = @line.description
+
+= link_to 'Edit', edit_line_path(@line)
+\|
+= link_to 'Back', node_lines_path(@node)

@@ -4,12 +4,12 @@ one:
   user_id: 1
   diagram_id: 1
   node_id: 1
-  description: MyText
   next_node_id: 1
+  description: MyText
 
 two:
   user_id: 1
   diagram_id: 1
   node_id: 1
-  description: MyText
   next_node_id: 1
+  description: MyText

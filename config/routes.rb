@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :diagrams do
-    resources :nodes, shallow: true
+    resources :nodes, shallow: true do
+      resources :lines, shallow: true
+    end
   end
   devise_for :users
   

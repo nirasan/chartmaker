@@ -6,7 +6,7 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @nodes = Node.includes(:paths).where(user_id: current_user.id, diagram_id: @diagram.id)
+    @nodes = Node.includes(:lines).where(user_id: current_user.id, diagram_id: @diagram.id)
   end
 
   # GET /nodes/1

@@ -1,4 +1,4 @@
-class Path < ActiveRecord::Base
+class Line < ActiveRecord::Base
   belongs_to :user
   belongs_to :diagram
   belongs_to :node

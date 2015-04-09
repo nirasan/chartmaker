@@ -1,0 +1,29 @@
+%h1 Listing lines
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Diagram
+      %th Node
+      %th Next node
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @lines.each do |line|
+      %tr
+        %td= line.user_id
+        %td= line.diagram_id
+        %td= line.node_id
+        %td= line.next_node_id
+        %td= line.description
+        %td= link_to 'Show', line
+        %td= link_to 'Edit', edit_line_path(line)
+        %td= link_to 'Destroy', line, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Line', new_node_line_path(@node)
