@@ -1,24 +1,19 @@
 %h1 Listing nodes
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Diagram
-      %th Description
-      %th
-      %th
-      %th
+%h2 Diagram
+%div= @diagram.title
 
-  %tbody
-    - @nodes.each do |node|
-      %tr
-        %td= node.user_id
-        %td= node.diagram_id
-        %td= node.description
-        %td= link_to 'Show', node
-        %td= link_to 'Edit', edit_node_path(node)
-        %td= link_to 'Destroy', node, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br
+
+%h2 Nodes
+%div#node_container
+  - @nodes.each do |node|
+    = render partial: "nodes/node_element", locals: {:node => node}
+  %div#create_error
+  - node = Node.new
+  = form_for node, url: diagram_nodes_path(@diagram), method: "post", remote: true do |f|
+    = f.text_field :description
+    = f.submit('Create')
 
 %br
 

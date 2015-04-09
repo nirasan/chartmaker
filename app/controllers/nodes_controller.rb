@@ -31,12 +31,14 @@ class NodesController < ApplicationController
     @node.diagram = @diagram
 
     respond_to do |format|
-      if @node.save
+      if @result = @node.save
         format.html { redirect_to @node, notice: 'Node was successfully created.' }
         format.json { render :show, status: :created, location: @node }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @node.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -45,12 +47,14 @@ class NodesController < ApplicationController
   # PATCH/PUT /nodes/1.json
   def update
     respond_to do |format|
-      if @node.update(node_params)
+      if @result = @node.update(node_params)
         format.html { redirect_to @node, notice: 'Node was successfully updated.' }
         format.json { render :show, status: :ok, location: @node }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @node.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -62,6 +66,7 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to diagram_nodes_url(@diagram), notice: 'Node was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
