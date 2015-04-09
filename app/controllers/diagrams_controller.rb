@@ -72,6 +72,6 @@ class DiagramsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def diagram_params
-      params.require(:diagram).permit(:user_id, :title, :description)
+      params.require(:diagram).permit(:title, :description)
     end
 end

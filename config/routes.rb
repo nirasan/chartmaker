@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :diagrams
+  resources :diagrams do
+    resources :nodes, shallow: true
+  end
   devise_for :users
   
   root :to => 'top#index'

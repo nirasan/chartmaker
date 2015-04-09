@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @node.user_id
+%p
+  %b Diagram:
+  = @node.diagram.id
+%p
+  %b Description:
+  = @node.description
+
+= link_to 'Edit', edit_node_path(@node)
+\|
+= link_to 'Back', diagram_nodes_path(@diagram)

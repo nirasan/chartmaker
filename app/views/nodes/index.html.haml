@@ -1,0 +1,25 @@
+%h1 Listing nodes
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Diagram
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @nodes.each do |node|
+      %tr
+        %td= node.user_id
+        %td= node.diagram_id
+        %td= node.description
+        %td= link_to 'Show', node
+        %td= link_to 'Edit', edit_node_path(node)
+        %td= link_to 'Destroy', node, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Node', new_diagram_node_path(@diagram)
