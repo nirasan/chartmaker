@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DiagramsControllerTest < ActionController::TestCase
   setup do
-    @diagram = diagrams(:one)
+    @diagram = diagrams(:diagram1)
     @user1 = users(:user1)
     @user2 = users(:user2)
     sign_in :user, @user1

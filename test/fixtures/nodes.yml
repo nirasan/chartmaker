@@ -1,15 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user_id: 1
-  diagram_id: 1
-  description: MyText
+node1:
+  user: user1
+  diagram: diagram1
+  description: node1
   start: false
   end: false
 
-two:
-  user_id: 1
-  diagram_id: 1
-  description: MyText
+node2:
+  user: user1
+  diagram: diagram1
+  description: node2
+  start: false
+  end: false
+
+node3:
+  user: user1
+  diagram: diagram1
+  description: node3
   start: false
   end: false
