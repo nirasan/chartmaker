@@ -1,6 +1,8 @@
 class DiagramsController < ApplicationController
+  require "Open3"
+
   before_action :authenticate_user!
-  before_action :set_diagram, only: [:show, :edit, :update, :destroy]
+  before_action :set_diagram, only: [:show, :edit, :update, :destroy, :image]
 
   # GET /diagrams
   # GET /diagrams.json
@@ -61,6 +63,12 @@ class DiagramsController < ApplicationController
       format.html { redirect_to diagrams_url, notice: 'Diagram was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def image
+    dot = @diagram.get_dot
+    o, e, s = Open3.capture3("dot -T png", :stdin_data => dot.to_s)
+    send_data o, :disposition => "inline", :type => "image/png"
   end
 
   private

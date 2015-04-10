@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   resources :diagrams do
+    member do
+      get "image"
+    end
     resources :nodes, shallow: true do
       resources :lines, shallow: true
     end
