@@ -6,6 +6,13 @@ class Diagram < ActiveRecord::Base
   has_many :nodes
   has_many :lines
 
+  validates_presence_of :user
+  validates_presence_of :nodes
+  validates_presence_of :lines
+
+  validates :title, length: {minimum: 1, maximum: 255}
+  validates :description, length: {minimum: 1, maximum: 1024}
+
   def get_dot
     diagram = self
     Graph do
