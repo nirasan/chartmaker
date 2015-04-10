@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class LinesControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @line = lines(:line1)
     @user1 = users(:user1)

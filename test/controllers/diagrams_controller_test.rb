@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class DiagramsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
   setup do
     @diagram = diagrams(:diagram1)
     @user1 = users(:user1)
