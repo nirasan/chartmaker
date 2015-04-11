@@ -7,18 +7,17 @@ class Line < ActiveRecord::Base
   validates_presence_of :user
   validates_presence_of :diagram
   validates_presence_of :node
-  validates_presence_of :next_node
 
   validates :description, length: {minimum: 1, maximum: 1024}
 
   #next_node が同一 diagram であることを確認
-  validate :parent_records_must_be_same
-  def parent_records_must_be_same
-    if node.diagram_id != self.diagram_id
-      errors.add(:node, "has not same parent")
-    end
-    if next_node.diagram_id != self.diagram_id
-      errors.add(:next_node, "has not same parent")
+  validate :next_node_diagram_must_be_same
+  def next_node_diagram_must_be_same
+    nn = Node.find_by_id(self.next_node_id)
+    if nn.nil?
+      errors.add(:next_node_id, "is not found")
+    elsif nn.diagram_id != self.diagram_id
+      errors.add(:next_node_id, "has not same parent diagram")
     end
   end
 
