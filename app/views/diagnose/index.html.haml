@@ -1,0 +1,6 @@
+%h1 Diagnose#index
+
+- @diagrams.each do |diagram|
+  %div
+    %span= link_to diagram.title, "/diagnose/#{diagram.id}"
+    %span= "(#{diagram.updated_at})"

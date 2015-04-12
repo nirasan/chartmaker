@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  root :to => 'diagnose#index'
+  get '/diagnose' => 'diagnose#index'
+  get '/diagnose/:diagram_id' => 'diagnose#play'
+
   resources :diagrams do
     member do
       get "image"
@@ -9,7 +14,6 @@ Rails.application.routes.draw do
   end
   devise_for :users
   
-  root :to => 'top#index'
   get 'top/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

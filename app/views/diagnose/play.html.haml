@@ -1,0 +1,24 @@
+%h1 Diagnose#play
+
+- @diagram.nodes.each do |node|
+  %div{:id => "node_#{node.id}", :class => "node", :data => {:start => node.start, :end => node.end}}
+    %div=node.description
+    - node.lines.each do |line|
+      %div{:class => "line"}
+        = link_to line.description, "", :onclick => "return false", :data => {:next => line.next_node_id}
+
+:javascript
+  $(document).ready(function(){
+    $("div.node:not([data-start])").each(function(){
+      $(this).hide();
+    });
+    $("div.line > a").click(function(){
+      var el = $(this),
+          next_node_id = el.attr("data-next"),
+          next_node_selector = "div#node_" + next_node_id;
+      $("div.node").each(function(){
+        $(this).hide();
+      });
+      $(next_node_selector).show();
+    });
+  })
