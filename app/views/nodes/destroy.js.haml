@@ -1,3 +1,9 @@
-:plain
-  $("div#node_element_#{@node.id}").remove();
-  $(".node_#{@node.id}").remove();
+- if @result
+  :plain
+    $("div#node_element_#{@node.id}").remove();
+    $(".node_#{@node.id}").remove();
+- else
+  :plain
+    var elm = $("div#node_element_error_#{@node.id}");
+    elm.empty();
+    elm.append("#{escape_javascript( render partial: 'nodes/error', locals: {:node => @node} )}");

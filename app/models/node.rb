@@ -1,7 +1,8 @@
 class Node < ActiveRecord::Base
   belongs_to :user
   belongs_to :diagram
-  has_many :lines
+  has_many :lines, dependent: :restrict_with_error
+  has_many :connected_lines, class_name: "Line", foreign_key: "next_node_id", dependent: :restrict_with_error
 
   validates_presence_of :user
   validates_presence_of :diagram
@@ -16,3 +17,4 @@ class Node < ActiveRecord::Base
     end
   end
 end
+
