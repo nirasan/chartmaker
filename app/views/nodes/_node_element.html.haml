@@ -1,5 +1,6 @@
 %div.node_element{:id => "node_element_#{node.id}"}
   %div{:id => "node_element_error_#{node.id}"}
+  %span= "node_id:#{node.id}"
   = form_for node, url: node_path(node), method: "patch", remote: true do |f|
     = f.text_field :description
     = f.submit('Update')
