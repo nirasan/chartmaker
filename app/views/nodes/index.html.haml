@@ -3,8 +3,6 @@
 %h2 Diagram
 %div= @diagram.title
 
-%br
-
 %h2 Nodes
 %div#node_container
   / node list
@@ -24,6 +22,17 @@
       = f.text_field :description, :placeholder => "description"
       = f.submit('Create Node')
 
-%br
+%div
+  = link_to "image reload", "#", :id => "diagram_image_reload", :onclick => "return false"
 
-= link_to 'New Node', new_diagram_node_path(@diagram)
+%div
+  = image_tag image_diagram_path(@diagram), :id => "diagram_image", :width => 640
+
+:javascript
+  $(document).ready(function(){
+    console.log("image reloaded");
+    $("#diagram_image_reload").click(function(){
+      var timestamp = new Date().getTime();
+      $("#diagram_image").attr("src", "/diagrams/#{@diagram.id}/image?" + timestamp);
+    });
+  });

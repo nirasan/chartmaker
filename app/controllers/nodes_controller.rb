@@ -62,6 +62,7 @@ class NodesController < ApplicationController
   # DELETE /nodes/1
   # DELETE /nodes/1.json
   def destroy
+    #TODO: 関連するlineを削除するか、関連するlineがある場合に削除できなくする
     @node.destroy
     respond_to do |format|
       format.html { redirect_to diagram_nodes_url(@diagram), notice: 'Node was successfully destroyed.' }
