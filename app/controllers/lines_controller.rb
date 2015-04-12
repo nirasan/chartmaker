@@ -32,10 +32,17 @@ class LinesController < ApplicationController
     @line.node = @node
 
     respond_to do |format|
-      if @result = @line.save
-        format.html { redirect_to @line, notice: 'Line was successfully created.' }
-        format.json { render :show, status: :created, location: @line }
-        format.js
+      if @result = @line.valid?
+        begin
+          Line.transaction do
+            @line.save!
+          end
+          format.html { redirect_to @line, notice: 'Line was successfully created.' }
+          format.json { render :show, status: :created, location: @line }
+          format.js
+        rescue => e
+          render :text => e.message
+        end
       else
         format.html { render :new }
         format.json { render json: @line.errors, status: :unprocessable_entity }
@@ -47,11 +54,19 @@ class LinesController < ApplicationController
   # PATCH/PUT /lines/1
   # PATCH/PUT /lines/1.json
   def update
+    @line.attributes = line_params
     respond_to do |format|
-      if @result = @line.update(line_params)
-        format.html { redirect_to @line, notice: 'Line was successfully updated.' }
-        format.json { render :show, status: :ok, location: @line }
-        format.js
+      if @result = @line.valid?
+        begin
+          Line.transaction do
+            @line.save!
+          end
+          format.html { redirect_to @line, notice: 'Line was successfully updated.' }
+          format.json { render :show, status: :ok, location: @line }
+          format.js
+        rescue => e
+          render :text => e.message
+        end
       else
         format.html { render :edit }
         format.json { render json: @line.errors, status: :unprocessable_entity }
@@ -63,7 +78,9 @@ class LinesController < ApplicationController
   # DELETE /lines/1
   # DELETE /lines/1.json
   def destroy
-    @line.destroy
+    Line.transaction do
+      @line.destroy!
+    end
     respond_to do |format|
       format.html { redirect_to node_lines_url(@node), notice: 'Line was successfully destroyed.' }
       format.json { head :no_content }
