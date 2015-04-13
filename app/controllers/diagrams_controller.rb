@@ -1,5 +1,5 @@
 class DiagramsController < ApplicationController
-  require "Open3"
+  require "open3"
 
   before_action :authenticate_user!
   before_action :set_diagram, only: [:show, :edit, :update, :destroy, :image]
