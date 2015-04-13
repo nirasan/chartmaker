@@ -16,7 +16,7 @@ class Diagram < ActiveRecord::Base
     Graph do
       diagram.nodes.each do |node|
         id = "n#{node.id}".to_sym
-        node id, {label:node.description.scan(/.{1,8}/).join('\l'), shape:"square", style:"rounded"}
+        node id, {label:node.description.scan(/.{1,8}/).join('\l'), shape:"square", style:"rounded", fontname:"07やさしさゴシックボールド"}
       end
       diagram.lines.each do |line|
         id = "n#{line.node_id}_n#{line.next_node_id}".to_sym
