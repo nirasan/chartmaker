@@ -21,6 +21,9 @@ gem 'haml-rails'
 gem 'erb2haml'
 
 gem 'devise'
+gem 'devise-bootstrap-views'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 gem 'gviz'
 

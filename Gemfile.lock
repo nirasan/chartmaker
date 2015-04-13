@@ -60,6 +60,9 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-bootstrap-views (0.0.4)
+    devise-i18n (0.12.0)
+    devise-i18n-views (0.3.4)
     erb2haml (0.1.5)
       html2haml
     erubis (2.7.0)
@@ -204,6 +207,9 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  devise-bootstrap-views
+  devise-i18n
+  devise-i18n-views
   erb2haml
   gviz
   haml-rails
