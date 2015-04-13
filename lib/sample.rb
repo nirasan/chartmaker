@@ -25,6 +25,7 @@ class Sample
 
     puts g
 
+    require 'Open3'
     Open3.popen3('dot -T png') do |stdin, stdout, stderr, thread|
       stdin.puts g
       stdin.close
