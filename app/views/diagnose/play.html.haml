@@ -1,18 +1,24 @@
-%h1 Diagnose#play
+%h1= @diagram.title
+%p.text-muted= @diagram.description
 
 - @diagram.nodes.each do |node|
   %div{:id => "node_#{node.id}", :class => "node", :data => {:start => node.start, :end => node.end}}
-    %div=node.description
-    - node.lines.each do |line|
-      %div{:class => "line"}
-        = link_to line.description, "", :onclick => "return false", :data => {:next => line.next_node_id}
+    %div{:class => "panel #{if node.end then 'panel-success' else 'panel-default' end}"}
+      %div.panel-heading
+        %h3.panel-title= if node.end then "結果" else "質問" end
+      %div.panel-body
+        %h2{:style => "margin-top:0px;margin-bottom:20px;"}=node.description
+        - node.lines.each do |line|
+          %a.line{:href => "", :onclick => "return false", :data => {:next => "#{line.next_node_id}"}}
+            %button{:type => "button", :class => "btn btn-default btn-lg btn-block", :style=>"margin-top:10px;"}
+              = line.description
 
 :javascript
   $(document).ready(function(){
     $("div.node:not([data-start])").each(function(){
       $(this).hide();
     });
-    $("div.line > a").click(function(){
+    $("a.line").click(function(){
       var el = $(this),
           next_node_id = el.attr("data-next"),
           next_node_selector = "div#node_" + next_node_id;

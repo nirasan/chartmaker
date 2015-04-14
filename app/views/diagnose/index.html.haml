@@ -1,6 +1,11 @@
-%h1 Diagnose#index
+%div.panel.panel-default
+  %div.panel-heading
+    %h3.panel-title 新しいフローチャート
+  %div.panel-body
+    %table.table.table-striped
+      %tbody
+        - @diagrams.each do |diagram|
+          %tr
+            %td= link_to diagram.title, "/diagnose/#{diagram.id}"
+            %td= "(#{diagram.updated_at})"
 
-- @diagrams.each do |diagram|
-  %div
-    %span= link_to diagram.title, "/diagnose/#{diagram.id}"
-    %span= "(#{diagram.updated_at})"
